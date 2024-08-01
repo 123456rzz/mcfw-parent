@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "mcfw.auth",
+      "type": "org.mengchong.mcfw.manager.properties.UserAuthProperties",
+      "sourceType": "org.mengchong.mcfw.manager.properties.UserAuthProperties"
+    },
+    {
+      "name": "mcfw.minio",
+      "type": "org.mengchong.mcfw.manager.properties.MinioProperties",
+      "sourceType": "org.mengchong.mcfw.manager.properties.MinioProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mcfw.auth.no-auth-urls",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "org.mengchong.mcfw.manager.properties.UserAuthProperties"
+    },
+    {
+      "name": "mcfw.minio.access-key",
+      "type": "java.lang.String",
+      "sourceType": "org.mengchong.mcfw.manager.properties.MinioProperties"
+    },
+    {
+      "name": "mcfw.minio.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "org.mengchong.mcfw.manager.properties.MinioProperties"
+    },
+    {
+      "name": "mcfw.minio.endpoint-url",
+      "type": "java.lang.String",
+      "sourceType": "org.mengchong.mcfw.manager.properties.MinioProperties"
+    },
+    {
+      "name": "mcfw.minio.secre-key",
+      "type": "java.lang.String",
+      "sourceType": "org.mengchong.mcfw.manager.properties.MinioProperties"
+    }
+  ],
+  "hints": []
+}

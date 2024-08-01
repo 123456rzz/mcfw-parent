@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.CategoryMapper">
+
+    <!-- 映射查询到的字段-->
+    <resultMap id="categoryMap" type="org.mengchong.mcfw.model.entity.product.Category" autoMapping="true">
+
+    </resultMap>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,name,image_url,parent_id,status,order_num,create_time,update_time,is_deleted
+    </sql>
+
+    <!-- 1 根据id条件值进行查询，返回List集合 -->
+    <select id="selectCategoryByParentId" resultMap="categoryMap">
+        <!--  SELECT*FROM category WHERE parent_id=id-->
+        select <include refid="columns" />
+        from category
+        where parent_id= #{id} and is_deleted=0
+        order by id desc
+    </select>
+
+    <!-- 2 判断每个分类是否有下一层分类 -->
+    <select id="selectCountByParentId" resultType="Integer">
+        SELECT count(*)
+        FROM category
+        WHERE parent_id=#{id}
+    </select>
+    <!-- 3导出 调用mapper方法查询所有分类，返回List集合   -->
+    <select id="findAll" resultMap="categoryMap">
+        select <include refid="columns" />
+        from category
+        where is_deleted = 0
+        order by id
+    </select>
+
+
+<!--    &lt;!&ndash;2 角色添加的方法 &ndash;&gt;-->
+<!--    <insert id="save">-->
+<!--        insert into sys_role(-->
+<!--            id,role_name,role_code,description-->
+<!--        )values (-->
+<!--                    #{id},-->
+<!--                    #{roleName},-->
+<!--                    #{roleCode},-->
+<!--                    #{description}-->
+<!--                )-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;  3 角色修改的方法  &ndash;&gt;-->
+<!--    <update id="update">-->
+<!--        update sys_role set-->
+<!--        <if test="roleName != null and roleName != ''">-->
+<!--            role_name = #{roleName},-->
+<!--        </if>-->
+<!--        <if test="roleCode != null and roleCode !=''">-->
+<!--            role_code = #{roleCode},-->
+<!--        </if>-->
+<!--        <if test="description != null and description !=''">-->
+<!--            description = #{description},-->
+<!--        </if>-->
+<!--        &lt;!&ndash;  把修改时间改为当前时间 &ndash;&gt;-->
+<!--        update_time = now()-->
+<!--        where-->
+<!--        id = #{id}-->
+<!--    </update>-->
+<!--    &lt;!&ndash;  4 用户删除&ndash;&gt;-->
+<!--    <update id="delete">-->
+<!--        update  sys_role set is_deleted = 1  where id = #{roleId}-->
+
+<!--    </update>-->
+
+<!--    &lt;!&ndash;   5 查询所有角色&ndash;&gt;-->
+<!--    <select id="findAllRoles" resultMap="sysRoleMap" >-->
+<!--        &lt;!&ndash; 查询条件为空，使用动态SQL查询where判断  select*from sys_role where is_deleted=0 &ndash;&gt;-->
+<!--        select <include refid="columns" />-->
+<!--        from sys_role where is_deleted=0-->
+<!--    </select>-->
+
+
+
+
+</mapper>

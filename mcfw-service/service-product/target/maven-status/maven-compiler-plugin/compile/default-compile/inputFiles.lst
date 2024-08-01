@@ -1,0 +1,17 @@
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\controller\BrandFrontController.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\BrandFrontService.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\ProductFrontService.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\controller\CategoryFrontController.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\mapper\ProductFrontMapper.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\ProductApplication.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\impl\ProductFrontServiceImpl.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\mapper\BrandFrontMapper.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\impl\BrandFrontServiceImpl.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\mapper\ProductDetailsFrontMapper.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\controller\IndexFrontController.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\controller\ProductFrontController.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\mapper\ProductSkuFrontMapper.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\CategoryFrontService.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\mapper\CategoryFrontMapper.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\config\RedisConfig.java
+E:\lianxi\mcfw-parent\mcfw-service\service-product\src\main\java\org\mengchong\mcfw\product\service\impl\CategoryFrontServiceImpl.java

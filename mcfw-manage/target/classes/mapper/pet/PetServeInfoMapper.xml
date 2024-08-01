@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.PetServeInfoMapper">
+
+    <!-- 映射查询到的字段-->
+    <resultMap id="PetServeInfoMap" type="org.mengchong.mcfw.model.entity.service.PetServeInfo" autoMapping="true">
+
+    </resultMap>
+    <!--用于select查询公用抽取的列-->
+    <sql id="columns">
+      id, user_id, service_type, service_name, service_summary, count_pets, accepted_pet_types,
+      accepted_pet_sizes, transport_pet_distance, supervision_level,supervision_location,pet_sleeping_area,
+      provided_urination_times, number_walks, walk_length, residential_type,
+      last_minute_booking, search_location, price, price_details, charging_standards,
+      service_location, payment_method, create_time, create_user, update_time,is_deleted
+    </sql>
+    <!--  // 1 宠物服务列表分页 -->
+    <select id="findByPage" resultMap="PetServeInfoMap">
+        select <include refid="columns"/>
+        from pet_service_info
+        where is_deleted=0
+        order by id desc
+    </select>
+
+    <!--     // 2  宠物服务添加-->
+    <insert id="save">
+        insert into pet_service_info (
+          id,
+          user_id,
+          service_type,
+          service_name,
+          service_summary,
+          count_pets,
+          accepted_pet_types,
+          accepted_pet_sizes,
+          transport_pet_distance,
+          supervision_level,
+          supervision_location,
+          pet_sleeping_area,
+          provided_urination_times,
+          number_walks,
+          walk_length,
+          residential_type,
+          last_minute_booking,
+          search_location,
+          price,
+          price_details,
+          charging_standards,
+          service_location,
+          payment_method,
+          create_time,
+          create_user,
+          update_time,
+          is_deleted
+        ) values (
+             #{id},
+             #{userId},
+             #{serviceType},
+             #{serviceName},
+             #{serviceSummary},
+             #{countPets},
+             #{acceptedPetTypes},
+             #{acceptedPetSizes},
+             #{transportPetDistance},
+             #{supervisionLevel},
+             #{supervisionLocation},
+             #{petSleepingArea},
+             #{providedUrinationTimes},
+             #{numberWalks},
+             #{walkLength},
+             #{residentialType},
+             #{lastMinuteBooking},
+             #{searchLocation},
+             #{price},
+             #{priceDetails},
+             #{chargingStandards},
+             #{serviceLocation},
+             #{paymentMethod},
+             now(),
+             #{createUser},
+             now(),
+             0
+                 )
+    </insert>
+
+    <!--// 3  宠物服务修改-->
+    <update id="update">
+        update pet_service_info set
+        <if test="serviceType != null and serviceType != ''">
+            service_type = #{serviceType},
+        </if>
+        <if test="serviceName != null and serviceName != ''">
+            service_name = #{serviceName},
+        </if>
+        <if test="serviceSummary != null and serviceSummary != ''">
+            service_summary = #{serviceSummary},
+        </if>
+        <if test="countPets != null and countPets != ''">
+            count_pets = #{countPets},
+        </if>
+        <if test="acceptedPetTypes != null and acceptedPetTypes != ''">
+            accepted_pet_types = #{acceptedPetTypes},
+        </if>
+        <if test="acceptedPetSizes != null and acceptedPetSizes != ''">
+            accepted_pet_sizes = #{acceptedPetSizes},
+        </if>
+        <if test="transportPetDistance != null and transportPetDistance != ''">
+            transport_pet_distance = #{transportPetDistance},
+        </if>
+        <if test="supervisionLevel != null and supervisionLevel != ''">
+            supervision_level = #{supervisionLevel},
+        </if>
+        <if test="supervisionLocation != null and supervisionLocation != ''">
+            supervision_location = #{supervisionLocation},
+        </if>
+        <if test="petSleepingArea != null and petSleepingArea != ''">
+            pet_sleeping_area = #{petSleepingArea},
+        </if>
+        <if test="providedUrinationTimes != null and providedUrinationTimes != ''">
+        provided_urination_times = #{providedUrinationTimes},
+        </if>
+        <if test="numberWalks != null and numberWalks != ''">
+            number_walks = #{numberWalks},
+        </if>
+        <if test="walkLength != null and walkLength != ''">
+            walk_length = #{walkLength},
+        </if>
+        <if test="residentialType != null and residentialType != ''">
+            residential_type = #{residentialType},
+        </if>
+        <if test="lastMinuteBooking != null and lastMinuteBooking != ''">
+            last_minute_booking = #{lastMinuteBooking},
+        </if>
+        <if test="searchLocation != null and searchLocation != ''">
+            search_location = #{searchLocation},
+        </if>
+        <if test="price != null and price != ''">
+            price = #{price},
+        </if>
+        <if test="priceDetails != null and priceDetails != ''">
+            price_details = #{priceDetails},
+        </if>
+        <if test="chargingStandards != null and chargingStandards != ''">
+            charging_standards = #{chargingStandards},
+        </if>
+        <if test="serviceLocation != null and serviceLocation != ''">
+            service_location = #{serviceLocation},
+        </if>
+        <if test="paymentMethod != null and paymentMethod != ''">
+            payment_method = #{paymentMethod},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+    <!--   // 4 宠物服务删除-->
+    <update id="delete">
+        update  pet_service_info set is_deleted = 1  where id = #{id}
+    </update>
+
+    <!-- 5 查询所有品牌 -->
+    <!--    <select id="findAll" >-->
+    <!--        select <include refid="columns"/>-->
+    <!--        from brand-->
+    <!--        where is_deleted=0-->
+    <!--        order by id desc-->
+    <!--    </select>-->
+
+</mapper>

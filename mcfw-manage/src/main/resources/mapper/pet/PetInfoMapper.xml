@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.PetInfoMapper">
+
+    <!-- 映射查询到的字段-->
+    <resultMap id="petInfoMap" type="org.mengchong.mcfw.model.entity.pet.PetInfo" autoMapping="true">
+
+    </resultMap>
+    <!--用于select查询公用抽取的列-->
+    <sql id="columns">
+        id, pet_owner_id, avatar_photo,pet_name, pet_gender, pet_type, weight, pet_breed, pet_birthday,
+        other_information, vet_name, create_time, create_user, update_time,is_deleted
+    </sql>
+    <!--  // 1 宠物列表分页 -->
+    <select id="findByPage" resultMap="petInfoMap">
+        select <include refid="columns"/>
+        from pet_info
+        where is_deleted=0
+        order by id desc
+    </select>
+
+    <!--     // 2 宠物信息添加-->
+    <insert id="save">
+        insert into pet_info (
+           id,
+           pet_owner_id,
+           avatar_photo,
+           pet_name,
+           pet_gender,
+           pet_type,
+           weight,
+           pet_breed,
+           pet_birthday,
+           other_information,
+           vet_name,
+           create_time,
+           create_user,
+           update_time,
+           is_deleted
+        ) values (
+             #{id},
+             #{petOwnerId},
+             #{avatarPhoto},
+             #{petName},
+             #{petGender},
+             #{petType},
+             #{weight},
+             #{petBreed},
+             #{petBirthday},
+             #{otherInformation},
+             #{vetName},
+             now(),
+             #{createUser},
+             now(),
+             0
+                 )
+    </insert>
+    <!--// 3 宠物信息修改-->
+    <update id="update">
+        update pet_info set
+        <if test="petOwnerId != null and petOwnerId != ''">
+            pet_owner_id = #{petOwnerId},
+        </if>
+        <if test="avatarPhoto != null and avatarPhoto != ''">
+            avatar_photo = #{avatarPhoto},
+        </if>
+        <if test="petName != null and petName != ''">
+            pet_name = #{petName},
+        </if>
+        <if test="petGender != null and petGender != ''">
+            pet_gender = #{petGender},
+        </if>
+        <if test="petType != null and petType != ''">
+            pet_type = #{petType},
+        </if>
+        <if test="weight != null and weight != ''">
+            weight = #{weight},
+        </if>
+        <if test="petBreed != null and petBreed != ''">
+            pet_breed = #{petBreed},
+        </if>
+        <if test="petBirthday != null">
+            pet_birthday = #{petBirthday},
+        </if>
+        <if test="otherInformation != null and otherInformation != ''">
+            other_information = #{otherInformation},
+        </if>
+        <if test="vetName != null and vetName != ''">
+            vet_name = #{vetName},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+
+    <!--   // 4 宠物信息删除-->
+    <update id="delete">
+        update  pet_info set is_deleted = 1  where id = #{id}
+    </update>
+
+    <!-- 5 查询所有品牌 -->
+    <!--    <select id="findAll" >-->
+    <!--        select <include refid="columns"/>-->
+    <!--        from brand-->
+    <!--        where is_deleted=0-->
+    <!--        order by id desc-->
+    <!--    </select>-->
+
+</mapper>

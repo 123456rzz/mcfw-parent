@@ -1,0 +1,8 @@
+org\mengchong\mcfw\common\config\UserWebMvcConfiguration.class
+org\mengchong\mcfw\common\interceptor\UserLoginAuthInterceptor.class
+org\mengchong\Main.class
+org\mengchong\mcfw\common\config\Knife4jConfig.class
+org\mengchong\mcfw\common\anno\EnableUserLoginAuthInterceptor.class
+org\mengchong\mcfw\common\exception\GuiguException.class
+org\mengchong\mcfw\common\anno\EnableUserTokenFeignInterceptor.class
+org\mengchong\mcfw\common\feign\UserTokenFeignInterceptor.class

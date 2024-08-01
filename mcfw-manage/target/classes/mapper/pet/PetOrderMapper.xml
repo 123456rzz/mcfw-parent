@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.PetOrderMapper">
+
+    <!-- 映射查询到的字段-->
+    <resultMap id="McPetOrderInfoMap" type="org.mengchong.mcfw.model.entity.order.McPetOrderInfo" autoMapping="true">
+
+    </resultMap>
+    <!--用于select查询公用抽取的列-->
+    <sql id="columns">
+      id, user_id, user_name, employer_id, pet_id, order_number, used_coupon, original_price,
+      payment_method, order_status, cancellation_time, cancellation_reason, create_time,
+      update_time, is_deleted
+    </sql>
+    <!--  // 1 宠物服务列表分页 -->
+    <select id="findByPage" resultMap="McPetOrderInfoMap">
+        select <include refid="columns"/>
+        from mc_order_info
+        where is_deleted=0
+        order by id desc
+    </select>
+
+    <!--     // 2  宠物服务添加-->
+    <insert id="save">
+        insert into mc_order_info (
+        id,
+        user_id,
+        user_name,
+        employer_id,
+        pet_id,
+        order_number,
+        used_coupon,
+        original_price,
+        payment_method,
+        order_status,
+        cancellation_time,
+        cancellation_reason,
+        create_user,
+        create_time,
+        update_time,
+        is_deleted
+        ) values (
+         #{id},
+         #{userId},
+         #{userName},
+         #{employerId},
+         #{petId},
+         #{orderNumber},
+         #{usedCoupon},
+         #{originalPrice},
+         #{paymentMethod},
+         #{orderStatus},
+         #{cancelTime},
+         #{cancelReason},
+         #{createUser},
+         now(),
+         now(),
+         0
+        )
+    </insert>
+
+    <!--// 3  宠物服务修改-->
+    <update id="update">
+        update mc_order_info set
+        <if test="userName != null and userName != ''">
+            user_name = #{userName},
+        </if>
+        <if test="employerId != null and employerId != ''">
+            employer_id = #{employerId},
+        </if>
+        <if test="petId != null and petId != ''">
+            pet_id = #{petId},
+        </if>
+        <if test="orderNumber != null and orderNumber != ''">
+            order_number = #{orderNumber},
+        </if>
+        <if test="usedCoupon != null and usedCoupon != ''">
+            used_coupon = #{usedCoupon},
+        </if>
+        <if test="originalPrice != null and originalPrice != ''">
+            original_price = #{originalPrice},
+        </if>
+        <if test="paymentMethod != null and paymentMethod != ''">
+            payment_method = #{paymentMethod},
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            order_status = #{orderStatus},
+        </if>
+        <if test="cancelTime != null and cancelTime != ''">
+            cancellation_time = #{cancelTime},
+        </if>
+        <if test="cancelReason != null and cancelReason != ''">
+            cancellation_reason = #{cancelReason},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+    <!--   // 4 宠物服务删除-->
+    <update id="delete">
+        update  mc_order_info set is_deleted = 1  where id = #{id}
+    </update>
+
+    <!-- 5 查询所有品牌 -->
+    <!--    <select id="findAll" >-->
+    <!--        select <include refid="columns"/>-->
+    <!--        from brand-->
+    <!--        where is_deleted=0-->
+    <!--        order by id desc-->
+    <!--    </select>-->
+
+</mapper>

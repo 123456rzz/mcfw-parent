@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.mengchong.mcfw.product.mapper.PetFrontMapper">
+
+    <resultMap id="petInfoMap" type="org.mengchong.mcfw.model.entity.pet.PetInfo" autoMapping="true">
+    </resultMap>
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id, pet_owner_id, avatar_photo,pet_name, pet_gender, pet_type, weight, pet_breed, pet_birthday,
+        other_information, vet_name, create_time, create_user, update_time,is_deleted
+    </sql>
+<!--    //1  查询所有品牌-->
+    <select id="findAll" resultMap="petInfoMap">
+        select <include refid="columns" />
+        from pet_info
+        where is_deleted = 0
+        order by id desc
+    </select>
+
+</mapper>

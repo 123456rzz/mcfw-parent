@@ -1,0 +1,71 @@
+# 配置服务端口号
+server:
+  port: 8501
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_mcfw?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    # Redis的相关配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/*/*.xml
+  config-location: classpath:/mybatis-config.xml
+
+#springdoc相关配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: org.mengchong  #改成你自己的包名，一般到启动类的包名
+
+#  表示开启swagger文档
+springfox:
+  documentation:
+    swagger-ui:
+      enabled:true
+
+# 自定义配置
+mcfw:
+  auth:
+    noAuthUrls:
+      - /admin/system/index/login
+      - /admin/system/index/generateValidateCode
+#      - /admin/system/index/getUserInfo
+      - /admin/system/index/logout
+      - /swagger-resources/**
+      - /doc.html
+      - /webjars/**
+      - /swagger-ui/**
+      - /*/api-docs/**
+
+#knife4j相关配置 可以不用改
+#knife4j:
+#  enable: true
+#  setting:
+#    language: zh_cn
+#    swagger-model-name: 实体类
+
+# minio自定义配置
+  minio:
+    endpointUrl: http://127.0.0.1:9000
+    accessKey: minioadmin
+    secreKey: minioadmin
+    bucketName: mcfw

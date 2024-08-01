@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.SysUserMapper">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,username,name,password,pet_id,avatar_photo,email,phone,other_communication_methods,identify_verification,certificates,
+            introduce_yourself,types_experience,skills_qualifications,status,other_special_skills,
+        create_time,create_user,update_time,is_deleted
+    </sql>
+    <update id="deleteById">
+        update mc_user set update_time = now() , is_deleted = 1 where id = #{userId}
+    </update>
+
+    <select id="selectByUserName" resultType="org.mengchong.mcfw.model.entity.system.SysUser">
+        select <include refid="columns" />
+        from mc_user
+        where username = #{username}
+        and is_deleted = 0
+    </select>
+
+    <sql id="findPageWhere">
+        <where>
+            <if test="keyword != null and keyword != ''">
+                <!--and username like CONCAT('%',#{keyword},'%')-->
+                and (username like CONCAT('%',#{keyword},'%')
+                or name like CONCAT('%',#{keyword},'%')
+                or phone like CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="createTimeBegin != null and createTimeBegin != ''">
+                and create_time >= #{createTimeBegin}
+            </if>
+            <if test="createTimeEnd != null and createTimeEnd != ''">
+                and create_time &lt;= #{createTimeEnd}
+            </if>
+            and is_deleted = 0
+        </where>
+    </sql>
+    <!--  用户条件分页查询 -->
+    <select id="findByPage" resultType="org.mengchong.mcfw.model.entity.system.SysUser" >
+        select <include refid="columns" />
+        from mc_user
+        <where>
+            <if test="keyword !=null and keyword !=''">
+                and username like concat('%',#{keyword},'%')
+            </if>
+            <if test="createTimeBegin !=null and createTimeBegin !=''">
+                and create_time >=${createTimeBegin}
+            </if>
+            <if test="createTimeEnd != null and createTimeEnd != ''">
+                and create_time &lt;= #{createTimeEnd}
+            </if>
+            and is_deleted = 0
+        </where>
+
+<!--        <include refid="findPageWhere"/>-->
+        order by id desc
+    </select>
+    <!--  2 用户添加-->
+    <insert id="save">
+        insert into mc_user (
+            id,
+            username,
+            name,
+            password,
+            pet_id,
+            avatar_photo,
+            email,
+            phone,
+            other_communication_methods,
+            identify_verification,
+            certificates,
+            introduce_yourself,
+            types_experience,
+            status,
+            other_special_skills,
+            skills_qualifications,
+            create_time,
+            create_user,
+            update_time,
+            is_deleted
+
+        ) values (
+            #{id},
+            #{userName},
+            #{name},
+            #{password},
+            #{petId},
+            #{avatarPhoto},
+            #{email},
+            #{phone},
+            #{otherCommunicationMethods},
+            #{identifyVerification},
+            #{certificates},
+            #{introduceYourself},
+            #{typesExperience},
+            #{status},
+            #{otherSpecialSkills},
+            #{skillsQualifications},
+            now(),
+            #{createUser},
+            now(),
+            0
+         )
+    </insert>
+    <!--  3 用户修改-->
+    <update id="update">
+
+
+        userName name password petId avatarPhoto email phone
+        otherCommunicationMethods identifyVerification certificates
+        introduceYourself typesExperience skillsQualifications otherSpecialSkills  status
+
+        update mc_user set
+        <if test="userName != null and userName != ''">
+            username = #{username},
+        </if>
+        <if test="name != null and name != ''">
+            name = #{name},
+        </if>
+        <if test="password != null and password != ''">
+            password= #{password},
+        </if>
+        <if test="petId != null and petId != ''">
+            pet_id = #{petId},
+        </if>
+        <if test="avatarPhoto != null and avatarPhoto != ''">
+            avatar_photo = #{avatarPhoto},
+        </if>
+        <if test="email != null and email != ''">
+            email = #{email},
+        </if>
+        <if test="certificates != null and certificates != ''">
+            certificates = #{certificates},
+        </if>
+        <if test="phone != null and phone != ''">
+            phone = #{phone},
+        </if>
+        <if test="identifyVerification != null and identifyVerification != ''">
+            identify_verification = #{identifyVerification},
+        </if>
+        <if test="introduceYourself != null and introduceYourself != ''">
+            introduce_yourself = #{introduceYourself},
+        </if>
+        <if test="typesExperience != null and typesExperience != ''">
+            types_experience = #{typesExperience},
+        </if>
+        <if test="otherCommunicationMethods != null and otherCommunicationMethods != ''">
+            other_communication_methods = #{otherCommunicationMethods},
+        </if>
+        <if test="otherSpecialSkills != null and otherSpecialSkills != ''">
+            other_special_skills = #{otherSpecialSkills},
+        </if>
+        <if test="skillsQualifications != null and skillsQualifications != ''">
+            skills_qualifications = #{skillsQualifications},
+        </if>
+        <if test="status != null and status != ''">
+            status = #{status},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+    <!--  4 用户删除-->
+    <update id="delete">
+update  mc_user set is_deleted = 1  where id = #{userId}
+
+    </update>
+
+</mapper>

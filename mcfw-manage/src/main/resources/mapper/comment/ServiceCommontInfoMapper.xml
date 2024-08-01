@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证映射文件的命名空间和mapper接口的全类名保持一致-->
+<mapper namespace="org.mengchong.mcfw.manager.mapper.ServiceCommontInfoMapper">
+
+    <!-- 映射查询到的字段-->
+    <resultMap id="ServiceCommontInfoMap" type="org.mengchong.mcfw.model.entity.comment.ServiceCommontInfo" autoMapping="true">
+
+    </resultMap>
+    <!--用于select查询公用抽取的列-->
+    <sql id="columns">
+        id, user_id, service_request_id,review_star, description, create_time, update_time, create_user,is_deleted
+    </sql>
+    <!--  // 1 宠物列表分页 -->
+    <select id="findByPage" resultMap="ServiceCommontInfoMap">
+        select <include refid="columns"/>
+        from mc_service_commont_info
+        where is_deleted=0
+        order by id desc
+    </select>
+
+    <!--     // 2 宠物信息添加-->
+    <insert id="save">
+        insert into mc_service_commont_info (
+            id,
+            user_id,
+            service_request_id,
+            review_star,
+            description,
+            create_user,
+            create_time,
+            update_time,
+            is_deleted
+        ) values (
+             #{id},
+             #{userId},
+             #{serviceRequestId},
+             #{reviewStar},
+             #{description},
+             #{createUser},
+             now(),
+             now(),
+             0
+         )
+    </insert>
+
+    <!--// 3 宠物信息修改-->
+    <update id="update">
+        update mc_service_commont_info set
+        <if test="reviewStar != null and reviewStar != ''">
+            review_star = #{reviewStar},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        update_time =  now()
+        where
+        id = #{id}
+    </update>
+
+    <!--   // 4 宠物信息删除-->
+    <update id="delete">
+        update  mc_service_commont_info set is_deleted = 1  where id = #{id}
+    </update>
+
+
+
+</mapper>

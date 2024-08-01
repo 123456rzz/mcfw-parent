@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/mcfw-common/common-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/common-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/common-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/common-util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-manage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-manage/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-model/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-server-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/service-cart-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/service-order-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/service-product-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/service-user-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-cart/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-pay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/service-user/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mcfw-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spzx-service-client/service-product-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spzx-service-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spzx-service-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spzx-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
